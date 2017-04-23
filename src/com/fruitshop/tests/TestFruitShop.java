@@ -43,27 +43,34 @@ public class TestFruitShop {
 	@Test
 	public void WhenFiveApplesInBasketReturnTotalThreeGBP() {
 		List<String> items = Arrays.asList("apple", "apple", "apple", "apple", "apple");
-		assertEquals(BigDecimal.valueOf(3.0), shop.checkout(items, false));
+		assertEquals(BigDecimal.valueOf(3.0), shop.checkout(items, false, false));
 	}
 
 	// Checking total when all items are oranges and no offers applied
 	@Test
 	public void WhenFiveOrangesInBasketReturnTotalOneTwentyFiveGBP() {
 		List<String> items = Arrays.asList("orange", "orange", "orange", "orange", "orange");
-		assertEquals(BigDecimal.valueOf(1.25), shop.checkout(items, false));
+		assertEquals(BigDecimal.valueOf(1.25), shop.checkout(items, false, false));
 	}
 
 	// Checking total for apples and oranges in basket and no offers applied
 	@Test
 	public void WhenTwoOrangesThreeApplesInBasketReturnTotalTwoFiftyfiveGBP() {
 		List<String> items = Arrays.asList("apple", "orange", "apple", "orange", "orange", "apple");
-		assertEquals(BigDecimal.valueOf(2.55), shop.checkout(items, false));
+		assertEquals(BigDecimal.valueOf(2.55), shop.checkout(items, false, false));
 	}
 
 	// Checking total buy one get one free offer when apples only in basket
 	@Test
 	public void WhenFiveApplesWithOfferInBasketReturnTotalThreeGBP() {
 		List<String> items = Arrays.asList("apple", "apple", "apple", "apple", "apple");
-		assertEquals(BigDecimal.valueOf(1.5), shop.checkout(items, true));
+		assertEquals(BigDecimal.valueOf(1.5), shop.checkout(items, true, false));
+	}
+
+	// checking total for buy two get one free offer when oranges only in basket
+	@Test
+	public void WhenSevenOrangessWithOfferInBasketReturnTotalOneTwentyfiveGBP() {
+		List<String> items = Arrays.asList("orange", "orange", "orange", "orange", "orange", "orange", "orange");
+		assertEquals(BigDecimal.valueOf(1.25), shop.checkout(items, false, true));
 	}
 }

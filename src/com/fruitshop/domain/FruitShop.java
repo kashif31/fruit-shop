@@ -34,23 +34,74 @@ public class FruitShop {
 		}
 	}
 
-	public BigDecimal checkout(List<String> basket, boolean offerOnApples) {
+	public BigDecimal checkout(List<String> basket, boolean offerOnApples, boolean offerOnOranges) {
 
 		BigDecimal applesTotal = BigDecimal.ZERO;
 		BigDecimal orangesTotal = BigDecimal.ZERO;
 		BigDecimal total = BigDecimal.ZERO;
+		int numOfOranges = 0;
 
 		for (String item : basket) {
 			if (item.equalsIgnoreCase("apple"))
 				applesTotal = applesTotal.add(costOfApple);
 
-			if (item.equalsIgnoreCase("orange"))
+			if (item.equalsIgnoreCase("orange")) {
 				orangesTotal = orangesTotal.add(costOfOrange);
+				numOfOranges++;
+			}
 		}
 		if (offerOnApples) // buy one get one free offer on apples
 			applesTotal = applesTotal.divide(BigDecimal.valueOf(2));
 
+		// Buy two get one free offer on oranges
+		if (offerOnOranges && numOfOranges > 2) {
+			int orangesToDiscount = numOfOranges / 3;
+			orangesTotal = orangesTotal.subtract(costOfOrange.multiply(BigDecimal.valueOf(orangesToDiscount)));
+		}
+
 		total = applesTotal.add(orangesTotal);
 		return total;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((basket == null) ? 0 : basket.hashCode());
+		result = prime * result + ((costOfApple == null) ? 0 : costOfApple.hashCode());
+		result = prime * result + ((costOfOrange == null) ? 0 : costOfOrange.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FruitShop other = (FruitShop) obj;
+		if (basket == null) {
+			if (other.basket != null)
+				return false;
+		} else if (!basket.equals(other.basket))
+			return false;
+		if (costOfApple == null) {
+			if (other.costOfApple != null)
+				return false;
+		} else if (!costOfApple.equals(other.costOfApple))
+			return false;
+		if (costOfOrange == null) {
+			if (other.costOfOrange != null)
+				return false;
+		} else if (!costOfOrange.equals(other.costOfOrange))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "FruitShop [costOfApple=" + costOfApple + ", costOfOrange=" + costOfOrange + ", basket=" + basket + "]";
 	}
 }
