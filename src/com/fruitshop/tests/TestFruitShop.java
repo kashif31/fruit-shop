@@ -23,4 +23,17 @@ public class TestFruitShop {
 	public void TestCostOfOranges() {
 		assertEquals(BigDecimal.valueOf(0.25), shop.getCostOfOrange());
 	}
+
+	// Checking for null or empty basket
+	@Test(expected = NullPointerException.class)
+	public void WhenItemNullOrEmptyThrowsException() {
+		shop.addItemToBasket(null);
+		shop.addItemToBasket("");
+	}
+
+	// Checking for item other than oranges or apples
+	@Test(expected = RuntimeException.class)
+	public void WhenAnythingElseButAppleOrOrangeThrowsException() {
+		shop.addItemToBasket("banana");
+	}
 }
