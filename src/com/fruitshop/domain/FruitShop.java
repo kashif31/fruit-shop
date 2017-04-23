@@ -34,7 +34,7 @@ public class FruitShop {
 		}
 	}
 
-	public BigDecimal checkout(List<String> basket) {
+	public BigDecimal checkout(List<String> basket, boolean offerOnApples) {
 
 		BigDecimal applesTotal = BigDecimal.ZERO;
 		BigDecimal orangesTotal = BigDecimal.ZERO;
@@ -47,6 +47,8 @@ public class FruitShop {
 			if (item.equalsIgnoreCase("orange"))
 				orangesTotal = orangesTotal.add(costOfOrange);
 		}
+		if (offerOnApples) // buy one get one free offer on apples
+			applesTotal = applesTotal.divide(BigDecimal.valueOf(2));
 
 		total = applesTotal.add(orangesTotal);
 		return total;
