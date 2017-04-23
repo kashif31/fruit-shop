@@ -73,4 +73,12 @@ public class TestFruitShop {
 		List<String> items = Arrays.asList("orange", "orange", "orange", "orange", "orange", "orange", "orange");
 		assertEquals(BigDecimal.valueOf(1.25), shop.checkout(items, false, true));
 	}
+
+	// checking total for both offers with oranges and apples both in the basket
+	@Test
+	public void WhenSevenOrangesThreeApplesInBasketWithOfferReturnTotalTwoThrityGBP() {
+		List<String> items = Arrays.asList("apple", "orange", "apple", "apple", "orange", "orange", "orange", "orange",
+				"orange", "orange");
+		assertEquals(BigDecimal.valueOf(2.15), shop.checkout(items, true, true));
+	}
 }

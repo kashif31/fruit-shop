@@ -53,7 +53,7 @@ public class FruitShop {
 		if (offerOnApples) // buy one get one free offer on apples
 			applesTotal = applesTotal.divide(BigDecimal.valueOf(2));
 
-		// Buy two get one free offer on oranges
+		// Get Three For the Price of Two Oranges
 		if (offerOnOranges && numOfOranges > 2) {
 			int orangesToDiscount = numOfOranges / 3;
 			orangesTotal = orangesTotal.subtract(costOfOrange.multiply(BigDecimal.valueOf(orangesToDiscount)));
