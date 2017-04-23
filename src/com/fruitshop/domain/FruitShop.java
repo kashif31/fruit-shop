@@ -33,4 +33,22 @@ public class FruitShop {
 			throw new RuntimeException("Invalid_Input : Shop only selling apples and oranges");
 		}
 	}
+
+	public BigDecimal checkout(List<String> basket) {
+
+		BigDecimal applesTotal = BigDecimal.ZERO;
+		BigDecimal orangesTotal = BigDecimal.ZERO;
+		BigDecimal total = BigDecimal.ZERO;
+
+		for (String item : basket) {
+			if (item.equalsIgnoreCase("apple"))
+				applesTotal = applesTotal.add(costOfApple);
+
+			if (item.equalsIgnoreCase("orange"))
+				orangesTotal = orangesTotal.add(costOfOrange);
+		}
+
+		total = applesTotal.add(orangesTotal);
+		return total;
+	}
 }

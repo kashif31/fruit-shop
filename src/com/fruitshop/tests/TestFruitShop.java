@@ -3,6 +3,8 @@ package com.fruitshop.tests;
 import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -35,5 +37,26 @@ public class TestFruitShop {
 	@Test(expected = RuntimeException.class)
 	public void WhenAnythingElseButAppleOrOrangeThrowsException() {
 		shop.addItemToBasket("banana");
+	}
+
+	// Checking total when all items are apples and no offers applied
+	@Test
+	public void WhenFiveApplesInBasketReturnTotalThreeGBP() {
+		List<String> items = Arrays.asList("apple", "apple", "apple", "apple", "apple");
+		assertEquals(BigDecimal.valueOf(3.0), shop.checkout(items));
+	}
+
+	// Checking total wehn all items are oranges and no offers applied
+	@Test
+	public void WhenFiveOrangesInBasketReturnTotalOneTwentyFiveGBP() {
+		List<String> items = Arrays.asList("orange", "orange", "orange", "orange", "orange");
+		assertEquals(BigDecimal.valueOf(1.25), shop.checkout(items));
+	}
+
+	// Checking total for apples and oranges in basket and no offers applied
+	@Test
+	public void WhenTwoOrangesThreeApplesInBasketReturnTotalTwoFiftyfiveGBP() {
+		List<String> items = Arrays.asList("apple", "orange", "apple", "orange", "orange", "apple");
+		assertEquals(BigDecimal.valueOf(2.55), shop.checkout(items));
 	}
 }
