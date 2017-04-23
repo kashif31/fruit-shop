@@ -34,6 +34,13 @@ public class FruitShop {
 		}
 	}
 
+	/**
+	 * 
+	 * @param basket(items as string input)
+	 * @param offerOnApples
+	 * @param offerOnOranges
+	 * @return total cost of the items in the basket.
+	 */
 	public BigDecimal checkout(List<String> basket, boolean offerOnApples, boolean offerOnOranges) {
 
 		BigDecimal applesTotal = BigDecimal.ZERO;
